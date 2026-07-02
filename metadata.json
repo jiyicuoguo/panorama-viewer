@@ -1,0 +1,6 @@
+{
+  "name": "全景图浏览器",
+  "description": "专业级360°全景图浏览器与虚拟漫游编辑器。支持拖拽导入本地全景图、多场景漫游热点标注、自动旋转控制、VR分屏双目预览模式，并内置一键打包本地桌面端EXE文件的完整配置与脚本指南。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
