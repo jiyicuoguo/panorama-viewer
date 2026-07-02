@@ -1,0 +1,35 @@
+name: 云端自动打包 EXE
+
+# 当你手动点击按钮时触发打包
+on:
+  workflow_dispatch:
+
+jobs:
+  build-windows-app:
+    runs-on: windows-latest # 租用一台免费的 Windows 云服务器
+    
+    steps:
+      - name: 1. 获取你的代码
+        uses: actions/checkout@v4
+        
+      - name: 2. 安装 Node.js 环境 (云端自动装)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: 3. 安装项目依赖并配置打包环境
+        run: |
+          npm install
+          npm install electron electron-builder --save-dev
+          
+      - name: 4. 编译前端代码
+        run: npm run build
+        
+      - name: 5. 正在打包免安装 EXE...
+        run: npx electron-builder --win
+        
+      - name: 6. 将打包好的程序提供给你下载
+        uses: actions/upload-artifact@v4
+        with:
+          name: 打包完成的桌面程序
+          path: dist/ # 将自动收集打包产出的 dist 文件夹
